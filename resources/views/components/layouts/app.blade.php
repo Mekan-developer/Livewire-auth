@@ -9,7 +9,7 @@
     @livewireStyles
 </head>
 <body>
-    <div class="container mx-auto">
+    <div>
         {{ $slot }}
     </div>
 

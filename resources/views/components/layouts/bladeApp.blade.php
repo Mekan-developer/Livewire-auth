@@ -9,10 +9,9 @@
     @livewireStyles
 </head>
 <body class="bg-gray-100 dark:bg-gray-900">
-    <div class="container relative mx-auto">
-        {{ $slot }}
+    <div class="relative">
+        @yield('content')
     </div>
-
     @livewireScripts
 </body>
 </html>

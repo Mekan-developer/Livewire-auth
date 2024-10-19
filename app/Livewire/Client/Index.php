@@ -11,6 +11,7 @@ class Index extends Component
 
     public function placeholder()
     {
+        
         return view('livewire.placeholders.skeleton');
     }
 

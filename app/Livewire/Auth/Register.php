@@ -2,9 +2,12 @@
 
 namespace App\Livewire\Auth;
 
+use Livewire\Attributes\Lazy;
 use Livewire\Component;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password as Pass;
+
 
 class Register extends Component
 {
@@ -14,11 +17,29 @@ class Register extends Component
     public $password;
     public $password_confirmation;
 
-    protected $rules = [
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|unique:users,email',
-        'password' => 'required|min:6|confirmed',
-    ];
+
+    public function rules()
+    {
+        return [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => ['required', Pass::min(5)->letters()->mixedCase()->symbols(), 'confirmed'],
+            'password_confirmation' => 'required',
+        ];
+    }
+
+    // Method to validate only the updated field in real-time
+    public function updated($propertyName)
+    {
+        if (in_array($propertyName, ['password', 'password_confirmation'])) {
+            $this->validate([
+                'password' => ['required', Pass::min(5)->letters()->mixedCase()->symbols(), 'confirmed'],
+                'password_confirmation' => 'required',
+            ]);
+        } else {
+            $this->validateOnly($propertyName);
+        }
+    }
 
     public function register()
     {
@@ -37,6 +58,6 @@ class Register extends Component
 
     public function render()
     {
-        return view('livewire.auth.register')->layout('components.layouts.auth');
+        return view('livewire.auth.register');
     }
 }

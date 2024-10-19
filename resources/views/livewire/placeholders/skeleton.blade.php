@@ -5,7 +5,7 @@
         <div class="h-[80px] bg-gray-200 rounded-sm dark:bg-gray-700 w-full"></div>
     </div>
 
-    <div class="flex gap-10 flex-wrap justify-center pb-4">
+    <div class="grid grid-cols-2 gap-12 justify-center pb-4">
         @for ($i = 0; $i < 10; $i++)
             <div> 
                 <div class="flex items-center justify-center w-full h-48 bg-gray-300 rounded sm:w-96 dark:bg-gray-700">
@@ -16,9 +16,9 @@
                 <div class="w-full">
                     <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
                     <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[280px] mb-2.5"></div>
-                    <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5 max-w-[380px]"></div>
+                    {{-- <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5 max-w-[380px]"></div>
                     <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[240px] mb-2.5"></div>
-                    <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[260px] mb-2.5"></div>
+                    <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[260px] mb-2.5"></div> --}}
                     <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[260px]"></div>
                 </div>
 

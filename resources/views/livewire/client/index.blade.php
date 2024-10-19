@@ -1,24 +1,20 @@
-<div>
+<div class="container mx-auto">
     <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <div class="flex gap-4 md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                 @if (Route::has('login'))
                 <nav class="-mx-3 flex gap-4 flex-1 justify-end">
-                     <button id="theme-toggle" class="p-2 bg-gray-200 dark:bg-gray-600 rounded-full mr-2">
-                        <x-heroicon-c-sun id="theme-toggle-dark-icon" class="w-6 h-6 hidden"/>
-                        <x-heroicon-o-moon id="theme-toggle-light-icon" class="w-6 h-6 hidden" />
-                    </button>
-
+                    <x-mode-change />
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                        <a href="{{ url('/dashboard') }}" wire:navigate class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                             Dashboard
                         </a>
                     @else
-                        <a href="{{ route('login') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                        <a href="{{ route('login') }}" wire:navigate class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                             Log in
                         </a>
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                            <a href="{{ route('register') }}" wire:navigate class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                                 Register
                             </a>
                         @endif

@@ -1,0 +1,64 @@
+<?php
+
+namespace App\Livewire\Auth\Passwords;
+
+use Livewire\Component;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Validation\ValidationException;
+
+class Reset extends Component
+{
+    public $token;  // The reset token
+    public $email;  // The user's email
+    public $password; // The new password
+    public $password_confirmation; // Confirm the new password
+
+    // Mount method to initialize the component with the token and email
+    public function mount($token, $email)
+    {
+        $this->token = $token;
+        $this->email = $email;
+    }
+
+    // Method to reset the password
+    public function resetPassword()
+    {
+        // Validate the password input
+        $this->validate([
+            'email' => 'required|email',
+            'token' => 'required',
+            'password' => 'required|min:8|confirmed',
+        ]);
+
+        // Attempt to reset the password
+        $response = Password::broker()->reset(
+            [
+                'email' => $this->email,
+                'password' => $this->password,
+                'token' => $this->token,
+            ],
+            function ($user) {
+                $user->forceFill([
+                    'password' => Hash::make($this->password),
+                ])->save();
+            }
+        );
+
+        // Handle the response
+        if ($response === Password::PASSWORD_RESET) {
+            // Flash a success message
+            session()->flash('status', 'Your password has been reset! You can now log in.');
+            return redirect()->route('login'); // Redirect to the login page
+        }
+
+        // If the reset fails, throw an exception
+        throw ValidationException::withMessages(['email' => trans($response)]);
+    }
+
+    // Render the view for this component
+    public function render()
+    {
+        return view('livewire.auth.passwords.reset');
+    }
+}
