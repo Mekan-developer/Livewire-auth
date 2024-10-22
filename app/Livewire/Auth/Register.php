@@ -12,7 +12,7 @@ use Illuminate\Validation\Rules\Password as Pass;
 class Register extends Component
 {
 
-    public $name;
+    public $username;
     public $email;
     public $password;
     public $password_confirmation;
@@ -21,7 +21,7 @@ class Register extends Component
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255',
+            'username' => 'required|string|min:5|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => ['required', Pass::min(5)->letters()->mixedCase()->symbols(), 'confirmed'],
             'password_confirmation' => 'required',
@@ -46,12 +46,12 @@ class Register extends Component
         $this->validate();
 
         User::create([
-            'name' => $this->name,
+            'username' => $this->username,
             'email' => $this->email,
             'password' => Hash::make($this->password),
         ]);
 
-        auth()->attempt(['email' => $this->email, 'password' => $this->password]);
+        auth()->attempt(['email' => $this->email,'username' => $this->username, 'password' => $this->password]);
 
         return redirect()->intended('dashboard');
     }

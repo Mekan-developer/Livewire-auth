@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LanguageController;
 use App\Livewire\Auth\Passwords\Email;
 use App\Livewire\Auth\Passwords\Reset as PasswordReset;
 use App\Livewire\Client\Index;
@@ -9,21 +10,29 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Register;
 
-Route::get('/login', Login::class)->name('login');
-Route::get('/register', Register::class)->name('register');
-// password reset start
-Route::get('/password/reset',Email::class)->name('password.request');
-Route::get('password/reset/{token}/{email}', PasswordReset::class)->name('password.reset');
+Route::get('/', Index::class)->name('client.index');
+Route::get('lang', [LanguageController::class, 'change'])->name("change.lang");
 
-// password resend end
+Route::middleware(['RedirectIfAuthenticated'])->group(function () {
+    Route::get('/login', Login::class)->name('login');
+    Route::get('/register', Register::class)->name('register');
+    // password reset start
+    Route::get('/password/reset',Email::class)->name('password.request');
+    Route::get('password/reset/{token}/{email}', PasswordReset::class)->name('password.reset');
+    // password resent end
+});
+
+
+
+
 
 Route::get('/dashboard', Home::class)->name('dashboard.home');
-Route::get('/', Index::class)->name('client.index');
+
 
 
 
 // Route::get('/', function () {
-//     return view('welcome');
+//     return view('alpine');
 // });
 
 // Fallback route for undefined routes

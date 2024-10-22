@@ -3,25 +3,26 @@
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <div class="flex gap-4 md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                 @if (Route::has('login'))
-                <nav class="-mx-3 flex gap-4 flex-1 justify-end">
-                    <x-mode-change />
-                    @auth
-                        <a href="{{ url('/dashboard') }}" wire:navigate class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                            Dashboard
-                        </a>
-                    @else
-                        <a href="{{ route('login') }}" wire:navigate class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                            Log in
-                        </a>
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" wire:navigate class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                                Register
+                    <nav class="-mx-3 flex gap-4 flex-1 justify-end">
+                        <x-mode-change />
+                        @auth
+                            <a href="{{ url('/dashboard') }}" wire:navigate class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                               {{ __('messages.dashboard') }}
+                               
                             </a>
-                        @endif
-                    @endauth
-                </nav>
-            @endif
-
+                        @else
+                            <a href="{{ route('login') }}" wire:navigate class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                                Log in
+                            </a>
+                            {{-- @if (Route::has('register'))
+                                <a href="{{ route('register') }}" wire:navigate class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                                    Register
+                                </a>
+                            @endif --}}
+                        @endauth
+                    </nav>
+                    <x-lang-toggle />
+                @endif
             </div>
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
                 <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">

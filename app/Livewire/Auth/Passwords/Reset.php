@@ -6,6 +6,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Validation\Rules\Password as Pass;
 
 class Reset extends Component
 {
@@ -21,15 +22,27 @@ class Reset extends Component
         $this->email = $email;
     }
 
+
+    public function rules()
+    {
+        return [
+            'email' => 'required|email',
+            'token' => 'required',
+            'password' => ['required', Pass::min(5)->letters()->mixedCase()->symbols(), 'confirmed'],
+            'password_confirmation' => 'required',
+        ];
+    }
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
+
     // Method to reset the password
     public function resetPassword()
     {
         // Validate the password input
-        $this->validate([
-            'email' => 'required|email',
-            'token' => 'required',
-            'password' => 'required|min:8|confirmed',
-        ]);
+        $this->validate();
 
         // Attempt to reset the password
         $response = Password::broker()->reset(
