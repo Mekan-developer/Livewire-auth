@@ -10,7 +10,7 @@ use Illuminate\Validation\Rules\Password as Pass;
 #[Lazy()]
 class Login extends Component
 {
-    public $login='';
+    public $username='';
     public $password='', $showPassword = false;
     public $remember=false;
 
@@ -22,30 +22,21 @@ class Login extends Component
     public function placeholder(){
         return view('livewire.placeholders.login');
     }
-    public function rules()
-    {       
-        return  [
-            'login' => 'required|min:5',
-            'password' => ['required', Pass::min(5)->letters()->mixedCase()->symbols()]
-        ];
-    }
-
-
-    // Validate updated fields in real-time
-    public function updated($propertyName)
-    {
-        $this->validateOnly($propertyName);
-    }
 
     public function submitLogin()
     {
-
-        $credentials = $this->validate();
-        $loginType = filter_var($this->login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        // $credentials = $this->validate();
+        $loginType = filter_var($this->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        
+        $this->validate([
+            // 'username' => 'required',
+            'username' => 'required',
+            'password' => 'required',
+        ]);
 
         // Create credentials array based on the login type
         $credentials = [
-            $loginType => $this->login,
+            $loginType => $this->username,
             'password' => $this->password,
         ];
 
@@ -53,7 +44,8 @@ class Login extends Component
             session()->regenerate();  // Prevent session fixation
             return redirect()->intended('dashboard');
         } else {
-            $this->addError('error', 'These credentials do not match our records.');  // Show error to user
+            // $this->addError('error', 'These credentials do not match our records.');  // Show error to user
+            session()->flash('error', 'These credentials do not match our records.');  // Show error to user
         }
         $this->reset('password');    
           
@@ -63,20 +55,6 @@ class Login extends Component
     {
         return view('livewire.auth.login');
     }
-
-    // asdad
-    // public function username()
-    // {
-    //     $login_type = filter_var(request()->input("login"), FILTER_VALIDATE_EMAIL) ? "email" : "username";
-
-    //     request()->merge([
-    //         $login_type => request()->input("login")
-    //     ]);
-        
-    //     return $login_type;
-    // }
-    // ewqewqeq
-
 
     public function clearError()
     {

@@ -22,18 +22,10 @@ Route::middleware(['RedirectIfAuthenticated'])->group(function () {
     // password resent end
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', Home::class)->name('dashboard.home');
 
-
-
-
-Route::get('/dashboard', Home::class)->name('dashboard.home');
-
-
-
-
-// Route::get('/', function () {
-//     return view('alpine');
-// });
+});
 
 // Fallback route for undefined routes
 Route::fallback(function () {

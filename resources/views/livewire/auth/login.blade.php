@@ -7,10 +7,10 @@
             <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 text-center mb-6">Login</h2>
                 <div class="form">                
                     <div class="mb-4">
-                        <label for="login" class="block text-sm font-medium text-gray-700 dark:text-gray-300">login</label>
-                        <input type="text" wire:model.blur="login" id="login"  autocomplete="off"
+                        <label for="login" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Username/Email</label>
+                        <input type="text" wire:model.blur="username" id="login"  autocomplete="off"
                             class="w-full p-3 bg-gray-50 dark:bg-gray-700 border dark:text-gray-300 border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300">
-                        @error('login') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                        @error('username') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                     </div>
 
                     <div class="mb-4">
@@ -18,11 +18,7 @@
                         <div class="relative">
                             <input type="{{ $showPassword ? 'text' : 'password' }}" wire:model.blur="password" id="password" autocomplete="off"
                             class="w-full p-3 bg-gray-50 dark:bg-gray-700 border dark:text-gray-300 border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300">
-                            
-                            <button class="absolute top-3 right-2" wire:click="togglePasswordVisibility">
-                                <x-dynamic-component :component="$showPassword ? 'heroicon-c-eye' : 'heroicon-c-eye-slash'" 
-                                class="w-6 h-6 text-gray-700 dark:text-gray-300 cursor-pointer" />
-                            </button>
+                            <x-show-password-eye showPassword={{$showPassword}} callFunctionName="togglePasswordVisibility" />
                         </div>
                         @error('password') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                     </div>
@@ -40,9 +36,10 @@
                     </div>
 
                     <button wire:click.prevent="submitLogin"
-                        class="w-full bg-blue-600 hover:bg-blue-700 text-white dark:bg-blue-500 dark:hover:bg-blue-600 font-bold py-2 px-4 rounded-md">
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white dark:bg-blue-500 dark:hover:bg-blue-600 font-bold py-2 px-4 rounded-md active:scale-95">
                         Login
                     </button>
+                    @error('error') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                 </div>
         </div>
 
