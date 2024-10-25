@@ -19,5 +19,8 @@ return [
     'throttle' => 'Giriş synanyşyklary örän köp. Gaýtadan synanmak üçin :seconds sekunt garaşyň.',
 
 
+    'username' =>'ulanyjy adynyz',
+    'password2' =>'açar sozüňiz',
+
 
 ];

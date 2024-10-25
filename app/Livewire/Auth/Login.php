@@ -30,8 +30,11 @@ class Login extends Component
         
         $this->validate([
             // 'username' => 'required',
-            'username' => 'required',
+            'username' => ['required'],
             'password' => 'required',
+        ],[],[
+            'username' => __('auth.username'),
+            'password' => __('auth.password2')
         ]);
 
         // Create credentials array based on the login type

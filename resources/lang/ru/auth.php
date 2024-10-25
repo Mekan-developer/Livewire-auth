@@ -17,5 +17,8 @@ return [
     'password' => 'Указанный пароль неверен.',
     'throttle' => 'Слишком много попыток входа. Пожалуйста, попробуйте снова через :seconds секунд.',
 
+    'username' =>'imya polzawatelya',
+    'password2' =>'parol',
+
 
 ];
