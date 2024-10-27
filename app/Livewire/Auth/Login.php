@@ -30,7 +30,7 @@ class Login extends Component
         
         $this->validate([
             // 'username' => 'required',
-            'username' => ['required'],
+            'username' => ['required|exit:User'],
             'password' => 'required',
         ],[],[
             'username' => __('auth.username'),

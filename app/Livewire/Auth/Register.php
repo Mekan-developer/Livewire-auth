@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Auth;
 
+use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\Lazy;
 use Livewire\Component;
 use App\Models\User;
@@ -35,7 +36,7 @@ class Register extends Component
     public function rules()
     {
         return [
-            'username' => 'required|string|min:6|max:255',
+            'username' => 'required|string|min:4|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => ['required', Pass::min(6)->letters()->mixedCase()->symbols(), 'confirmed'],
             'password_confirmation' => 'required',
@@ -62,13 +63,13 @@ class Register extends Component
     public function register()
     {
         $this->validate();
-
-        User::create([
+        User::register([
             'username' => $this->username,
             'email' => $this->email,
             'password' => Hash::make($this->password),
         ]);
 
+          
         auth()->attempt(['email' => $this->email,'username' => $this->username, 'password' => $this->password]);
 
         return redirect()->intended('dashboard');
@@ -127,8 +128,6 @@ class Register extends Component
             'length' => false,
         ];
         $this->strength = 0;
-    }
-
-    // password requirments showed like tooltip when start input type='password' end 
+    } 
 
 }
