@@ -27,6 +27,12 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
+
+Route::get('/alpine',function () {
+    return view('alpine');
+});
+
+
 // Fallback route for undefined routes
 Route::fallback(function () {
     return redirect('/');

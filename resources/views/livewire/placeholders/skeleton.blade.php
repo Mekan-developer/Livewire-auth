@@ -4,27 +4,18 @@
     <div class="w-full fixed z-20 top-0 start-0">        
         <div class="h-[80px] bg-gray-200 rounded-sm dark:bg-gray-700 w-full"></div>
     </div>
-
+ 
     <div class="grid grid-cols-2 gap-12 justify-center pb-4">
         @for ($i = 0; $i < 10; $i++)
-            <div> 
-                <div class="flex items-center justify-center w-full h-48 bg-gray-300 rounded sm:w-96 dark:bg-gray-700">
-                    <svg class="w-10 h-10 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
-                        <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z"/>
-                    </svg>
+            <div class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 animate-pulse">
+                <div class="w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg bg-gray-300 dark:bg-gray-700"></div>
+                <div class="flex flex-col justify-between p-4 leading-normal w-full">
+                    <div class="h-6 bg-gray-300 rounded mb-2 w-3/4 dark:bg-gray-600"></div>
+                    <div class="h-4 bg-gray-300 rounded mb-3 w-full dark:bg-gray-600"></div>
+                    <div class="h-4 bg-gray-300 rounded w-5/6 dark:bg-gray-600"></div>
                 </div>
-                <div class="w-full">
-                    <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-                    <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[280px] mb-2.5"></div>
-                    {{-- <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5 max-w-[380px]"></div>
-                    <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[240px] mb-2.5"></div>
-                    <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[260px] mb-2.5"></div> --}}
-                    <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[260px]"></div>
-                </div>
-
-            </div>
-        @endfor
-        
+            </div> 
+        @endfor        
     </div>
     
     <span class="sr-only">Loading...</span>

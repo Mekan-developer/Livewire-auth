@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,47 +8,27 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
-<body x-data :class="$store.darkMode.on && 'bg-black'">
-    {{-- <div>
-        <div x-data="{ open: false, test:'testtt'}">
-            <button x-text="open ? 'Close' : 'Click Here'" x-on:click="open = !open"></button>
-            <div>
-                <span x-show="open">
-                    <span>Content: <span x-text="test"></span></span>
-                </span>
-            </div>
-        </div>
-    </div> --}}
+<body >
 
     <div x-data="dropdown">
-        <button x-data @click="$store.darkMode.toggle()> Test </button>
+        <button @click="toggle">Expand</button>
      
-        <div x-show="$store.open">Test for payment Stripe </div>
+        <span x-show="open">Content...</span>
     </div>
-    {{-- <button x-data @click="$store.darkMode.toggle()">Toggle Dark Mode</button> --}}
+     
+    <div x-data="dropdown">
+        <button @click="toggle">Expand</button>
+     
+        <span x-show="open">Some Other Content...</span>
+    </div>
+
+
+    {{--  --}}
+
+    <div x-data>
+        <button @click="$store.counter.increment()">Увеличить</button>
+        <span x-text="$store.counter.count"></span>
+    </div>
     @livewireScripts
 </body>
 </html>
-
-<script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.store('darkMode', {
-            open: false,
- 
-            toggle() {
-                this.open = ! this.open
-            }
-        })
-    })
-</script>
-{{-- <script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.store('darkMode', {
-            on: false,
- 
-            toggle() {
-                this.on = ! this.on
-            }
-        })
-    })
-</script> --}}

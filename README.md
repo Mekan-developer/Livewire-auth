@@ -8,6 +8,14 @@ Livewire authentification page
 ![Скриншот проекта](github/dashboard.png)
 
 
+## Requirements
+
+- PHP >= 8.1
+- Laravel 11.x
+- Composer
+- MySQL or other database
+
+
 ## Установка
 
 Пошаговая инструкция по установке проекта.
@@ -16,6 +24,8 @@ Livewire authentification page
  * php artisan migrate
  * npm i
  * npm run dev
+
+
 
 ## Использование
 
